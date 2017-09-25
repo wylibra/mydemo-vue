@@ -55,7 +55,7 @@ export default {
                   if (loginParams.username == 'admin' && loginParams.userpass == 'admin') {
                       _this.logining = false;
                       sessionStorage.setItem('user', JSON.stringify(loginParams));
-                      _this.$router.push({path: '/menutab'});
+                      _this.$router.push({path: '/cascader'});
                   } else {
                       _this.logining = false;
                       _this.$alert('用户名或密码错误！', '提示信息', {confirmButtonText: '确定'});

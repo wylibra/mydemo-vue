@@ -23,4 +23,9 @@ ul {
   list-style-type: none;
   padding: 0;
 }
+.introduction {
+  color: #1f2d3d;
+  font-size: 13px;
+  padding: 10px 0;
+}
 </style>
