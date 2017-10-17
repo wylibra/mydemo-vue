@@ -2,7 +2,7 @@
 <div class="tab-content">
     <div class="introduction">功能介绍：可选择任意一级菜单的选项</div>
     <el-cascader
-        placeholder="试试搜索：指南"
+        placeholder="试试搜索："
         :options="options"
         filterable
         change-on-select
