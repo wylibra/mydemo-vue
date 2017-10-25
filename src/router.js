@@ -52,14 +52,19 @@ let routes =[{
     name: '图表',
     iconCls: 'el-icon-picture',
     children: [{
-            path: '/menutable',
-            component: menutable,
+            path: '/cascader',
+            component: cascader,
+            name: 'echarts图表示例'
+        },
+        {
+            path: '/cascader',
+            component: cascader,
             name: 'echarts图表示例'
         }
     ]
 },
 {
-	path: '/',
+	path: '/menutable',
     component: home,
     name: '设置',
     iconCls: 'el-icon-setting',

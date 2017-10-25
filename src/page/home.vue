@@ -29,14 +29,14 @@
             <!--导航菜单-->
             <el-menu default-active="0" router :collapse="collapsed">
             <template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
-                <el-submenu v-if="!item.hidden" :index="index+''">
+                <el-submenu v-if="item.children&&item.children.length>1" :index="index+''">
                     <template slot="title"><i :class="item.iconCls"></i><span slot="title">{{item.name}}</span></template>
                     <el-menu-item v-for="term in item.children" :key="term.path" :index="term.path" v-if="!item.hidden"
                                     :class="$route.path==term.path?'is-active':''">
                         <i :class="term.iconCls"></i><span slot="title">{{term.name}}</span>
                     </el-menu-item>
                 </el-submenu>
-                <el-menu-item v-else-if="item.hidden&&item.children&&item.children.length" :index="item.children[0].path"
+                <el-menu-item v-else-if="item.children&&item.children.length==1" :index="item.children[0].path"
                             :class="$route.path==item.children[0].path?'is-active':''">
                 <i :class="item.iconCls"></i><span slot="title">{{item.children[0].name}}</span>
                 </el-menu-item>
