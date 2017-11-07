@@ -67,7 +67,7 @@ export default {
     components: {},
     data() {
         return {
-            sysName: '拼图系统',
+            sysName: '系统',
             sysUserName: '',
             collapsed: false
         }
@@ -99,7 +99,8 @@ export default {
             user = JSON.parse(user);
             this.sysUserName = user.username || '';
         }
-        console.log(this.$route.path);
+        console.log(this.$router.options.routes);
+        // console.log(this.$route.path);
     }
 }
 </script>
