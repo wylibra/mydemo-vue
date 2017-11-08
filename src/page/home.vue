@@ -2,11 +2,40 @@
 <div class="home-container">
   <el-row class="container">
     <!--顶部-->
+
+
     <el-col :span="24" class="header">
         <el-col :span="1" class="logo">
             <i class="el-icon-star-on"></i>
         </el-col>
-        <el-col :span="10">{{collapsed?'':sysName}}</el-col>
+        <el-col :span="15">
+            <!-- {{collapsed?'':sysName}} -->
+            <el-menu
+                theme="dark"
+                default-active="1"
+                class="el-menu-demo"
+                mode="horizontal"
+                @select="handleSelect"
+                text-color="#9094A3"
+                active-text-color="#fff"
+                background-color="#545c64"
+                router
+                >
+                <template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
+                    <el-submenu v-if="item.children&&item.children.length>1" :index="index+''">
+                        <template slot="title"><i :class="item.iconCls"></i><span slot="title">{{item.name}}</span></template>
+                        <el-menu-item v-for="term in item.children" :key="term.path" :index="term.path" v-if="!item.hidden"
+                                        :class="$route.path==term.path?'is-active':''">
+                            <span slot="title">{{term.name}}</span>
+                        </el-menu-item>
+                    </el-submenu>
+                    <el-menu-item v-else-if="item.children&&item.children.length==1" :index="item.children[0].path"
+                                :class="$route.path==item.children[0].path?'is-active':''">
+                    <span slot="title">{{item.children[0].name}}</span>
+                    </el-menu-item>
+                </template>
+            </el-menu>
+        </el-col>
         <el-col :span="4" class="userinfo">
             <el-dropdown trigger="hover">
                 <span class="el-dropdown-link userinfo-inner">{{sysUserName}}</span>
@@ -52,10 +81,10 @@
                 </el-breadcrumb>
                 </el-col>
                 <el-col :span="24" class="content-wrapper">
-                <transition name="fade" mode="out-in">
-                    <router-view></router-view>
-                </transition>
-            </el-col>
+                    <transition name="fade" mode="out-in">
+                        <router-view></router-view>
+                    </transition>
+                </el-col>
         </section>
    </el-col>
  </el-row>
@@ -92,6 +121,9 @@ export default {
 
             });
         },
+        handleSelect(key, keyPath) {
+            console.log(key, keyPath);
+        }
     },
     mounted() {
         var user = sessionStorage.getItem('user');

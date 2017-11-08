@@ -84,12 +84,14 @@
                 </div>
             </template>
         </el-popover>
-        <el-button v-popover:popover>
+        <el-button v-popover:popover size="small">
             <i class="el-icon-plus"></i>
             更多字段
         </el-button>
     </div>
+    <!-- <a download="somedata.xls" href="#" onclick="return excellentExport.excel(this, 'datatable', 'Sheet Name Here');">导出excel</a> -->
     <el-table
+        id="datatable"
         :data="tableData"
         stripe
         style="width: 100%"
@@ -130,12 +132,15 @@
         </template>
         </el-table-column>
     </el-table>
+    <input type="text" ref="input1" />
+    <button @click="add">添加</button>
   </div>
 </template>
 
 <script>
 import moment from 'moment'
 // import dict from '../../dict'
+import excellentexport from 'excellentexport'
 export default {
     data() {
         return {
@@ -368,6 +373,14 @@ export default {
                 console.log(val.column.label);
                 console.log(val.order);
             }
+        },
+        // 导出excel
+        exportExcel() {
+            var ele = document.getElementById('datatable');
+            excellentexport.excel(this, ele, 'Sheet Name Here');
+        },
+        add() {
+            this.$refs.input1.value = '22';
         }
     }
 }
